@@ -10,7 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_05_015903) do
+ActiveRecord::Schema.define(version: 2020_05_05_202624) do
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer "treatment_id", null: false
+    t.integer "technician_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "appointment_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["technician_id"], name: "index_appointments_on_technician_id"
+    t.index ["treatment_id"], name: "index_appointments_on_treatment_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
+  create_table "spas", force: :cascade do |t|
+    t.string "name"
+    t.string "address1"
+    t.string "address2"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.string "phone_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "technicians", force: :cascade do |t|
+    t.string "name"
+    t.integer "spa_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["spa_id"], name: "index_technicians_on_spa_id"
+  end
+
+  create_table "treatments", force: :cascade do |t|
+    t.integer "spa_id", null: false
+    t.string "name"
+    t.text "description"
+    t.integer "duration"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.decimal "price", precision: 5, scale: 2
+    t.index ["spa_id"], name: "index_treatments_on_spa_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,4 +68,9 @@ ActiveRecord::Schema.define(version: 2020_05_05_015903) do
     t.index ["uid"], name: "index_users_on_uid"
   end
 
+  add_foreign_key "appointments", "technicians"
+  add_foreign_key "appointments", "treatments"
+  add_foreign_key "appointments", "users"
+  add_foreign_key "technicians", "spas"
+  add_foreign_key "treatments", "spas"
 end
