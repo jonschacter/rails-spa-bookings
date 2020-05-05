@@ -27,5 +27,7 @@
     <% end %>
 </ul>
 <br>
+<%= link_to "Edit This Spa", edit_spa_path(@spa) %><br>
+<%= link_to "Delete This Spa", spa_path(@spa), :method => "delete" %><br>
 <%= link_to "Back to Spa Index", spas_path %>
 

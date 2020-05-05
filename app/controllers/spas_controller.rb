@@ -24,9 +24,16 @@ class SpasController < ApplicationController
     end
 
     def update
+        if @spa.update(spa_params)
+            redirect_to spa_path(@spa)
+        else
+            render :edit
+        end
     end
 
     def destroy
+        @spa.destroy
+        redirect_to spas_path
     end
 
     private
