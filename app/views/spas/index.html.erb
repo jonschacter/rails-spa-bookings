@@ -1,0 +1,14 @@
+<h1>Spa Index</h1>
+<% @spas.each do |spa| %>
+    <div>
+        <h3><%= link_to spa.name, spa_path(spa) %></h3>
+        <p><%= spa.address1 %></p>
+        <% if spa.address2 %>
+            <p><%= spa.address2 %></p>
+        <% end %>
+        <p><%= spa.city %>, <%= spa.state %> <%= spa.zip %></p>
+        <p><%= spa.phone_number %></p>
+    </div>
+<% end %>
+<br>
+<%= link_to "Back", root_path %>
