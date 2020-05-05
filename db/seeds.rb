@@ -6,36 +6,61 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+spa1 = Spa.create(name: "Oceania Spa", 
+                    address1: "1325 Scallop Way", 
+                    address2: "Ste 522", 
+                    city: "Pacific Beach", 
+                    state: "CA", 
+                    zip: "92109", 
+                    phone_number: "(135) 790-2468"
+                )
+spa2 = Spa.create(name: "The Tuileries",
+                    address1: "2643 Royal Ct",
+                    city: "Boston",
+                    state: "MA",
+                    zip: "02115",
+                    phone_number: "(246) 801-3579"
+                )
 
-# Oceania Spa
-# 1325 Scallop Way
-# Pacific Beach, CA ?????
+marie = Technician.create(name: "Marie Lowell")
+abigail = Technician.create(name: "Abigail Proofrock")
+amanda = Technician.create(name: "Amanda Baylor")
+alistor = Technician.create(name: "Alistor Bingham")
 
-# The Tuileries
-# 2643 Royal Ct
-# Boston, MA ?????
+spa1.technicians = [marie, abigail]
+spa2.technicians = [amanda, alistor]
 
-# Marie Lowell 
-# Abigail Proofrock
-# Amanda Baylor
-# Alistor Bingham
+treat1 = Treatment.create(name: "Aromatherapy Massage",
+                            description: "Boost your mood, reduce stress and anxiety with this gentle pressure massage that focuses on development and use of essential oils.",
+                            price: "100",
+                            duration: 60
+                        )
 
-# Aromatherapy Massage
-# Boost your mood, reduce stress and anxiety with this gentle pressure massage that focuses on development and use of essential oils"
-# $100
-# 60min
+treat2 = Treatment.create(name: "Swedish Massage",
+                            description: "This gentle full body massage focuses on relieving tension, and increasing blood flow using long flowing strokes.",
+                            price: "80",
+                            duration: 60
+                        )
 
-# Swedish Massage
-# This gentle full body massage focuses on relieving tension, and increasing blood flow using long flowing strokes
-# $80
-# 60min
+treat3 = Treatment.create(name: "Classic Facial",
+                            description: "Here we steam the face, exfoliate, extract, massage and moisturize. The perfect introduction to facials.",
+                            price: "85",
+                            duration: 30
+                        )
 
-# Classic Facial
-# Here we steam the face, exfoliate, extract, massage and moisturize. The perfect introduction to facials.
-# $85
-# 30min
+treat4 = Treatment.create(name: "Microdermabrasion",
+                        description: "Focusing on exfoliation, this facial uses our special diamond-tip brush to remove dead skin cells.",
+                        price: "99.99",
+                        duration: 30
+                    )
 
-# Microdermabrasion
-# Focusing on exfoliation, this facial uses our special diamond-tip brush to remove dead skin cells.
-# $99.99
-# 30min
+spa1.treatments = [treat1, treat3]
+spa2.treatments = [treat2, treat4]
+
+jon = User.create(email: "jon@test.com", password: "password", name: "Jon Schacter")
+
+appointment1 = Appointment.new(appointment_time: DateTime.new(2020, 6, 30, 14))
+appointment1.user = jon
+appointment1.treatment = treat2
+appointment1.technician = amanda
+appointment1.save
