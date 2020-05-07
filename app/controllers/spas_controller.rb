@@ -9,6 +9,9 @@ class SpasController < ApplicationController
 
     def new
         @spa = Spa.new
+        5.times do
+            @spa.technicians.build
+        end
     end
 
     def create
@@ -43,6 +46,15 @@ class SpasController < ApplicationController
     end
 
     def spa_params
-        params.require(:spa).permit(:name, :address1, :address2, :city, :state, :zip, :phone_number)
+        params.require(:spa).permit(
+            :name, 
+            :address1, 
+            :address2, 
+            :city, 
+            :state, 
+            :zip, 
+            :phone_number,
+            technicians_attributes: [:name]
+        )
     end
 end

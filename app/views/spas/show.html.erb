@@ -12,10 +12,10 @@
 <h2>Technicians</h2>
 <ul>
     <% @spa.technicians.each do |technician| %>
-        <li><%= technician.name %></li>
+        <li><%= link_to technician.name, spa_technician_path(@spa, technician) %></li>
     <% end %>
 </ul>
-
+<%= link_to "Add a Technician", new_spa_technician_path(@spa) %>
 <h2>Treatments</h2>
 <ul>
     <% @spa.treatments.each do |treatment| %>
@@ -29,5 +29,6 @@
 <br>
 <%= link_to "Edit This Spa", edit_spa_path(@spa) %><br>
 <%= link_to "Delete This Spa", spa_path(@spa), :method => "delete" %><br>
+<br>
 <%= link_to "Back to Spa Index", spas_path %>
 
