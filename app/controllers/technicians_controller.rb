@@ -1,12 +1,11 @@
 class TechniciansController < ApplicationController
-    before_action :set_technician, only: [:show, :update, :destroy]
-    before_action :set_spa, only: [:new, :edit, :update, :destroy]
+    before_action :set_technician, only: [:show, :edit, :update, :destroy]
     
     def show
     end
 
     def new
-        @technician = @spa.technicians.build
+        @technician = Technician.new
     end
 
     def create
@@ -19,7 +18,6 @@ class TechniciansController < ApplicationController
     end
 
     def edit
-        @technician = @spa.technicians.find_by(id: params[:id])
     end
 
     def update
@@ -31,6 +29,7 @@ class TechniciansController < ApplicationController
     end
 
     def destroy
+        @spa = Spa.find_by(id: params[:spa_id])
         @technician.destroy
         redirect_to spa_path(@spa)
     end
@@ -39,10 +38,6 @@ class TechniciansController < ApplicationController
 
     def set_technician
         @technician = Technician.find(params[:id])
-    end
-
-    def set_spa
-        @spa = Spa.find_by(id: params[:spa_id])
     end
 
     def technician_params

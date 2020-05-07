@@ -1,5 +1,5 @@
 <h1>Add a Technician to <%= @spa.name %></h1>
-<%= form_for @technician do |f| %>
+<%= form_for [@spa, @technician] do |f| %>
     <%= f.hidden_field :spa_id %>
     <%= f.label :name %>
     <%= f.text_field :name %><br>

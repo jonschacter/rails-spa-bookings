@@ -4,9 +4,7 @@ Rails.application.routes.draw do
   root to: 'welcome#home'
 
   resources :spas do
-    resources :technicians, only: [:show, :new, :edit, :destroy]
+    resources :technicians
+    resources :treatments
   end
-
-  resources :technicians, only: [:create, :update]
-
 end

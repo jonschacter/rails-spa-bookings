@@ -1,5 +1,6 @@
 class SpasController < ApplicationController
     before_action :set_spa, only: [:show, :edit, :update, :destroy]
+
     def index
         @spas = Spa.order(:name)
     end
@@ -9,9 +10,6 @@ class SpasController < ApplicationController
 
     def new
         @spa = Spa.new
-        5.times do
-            @spa.technicians.build
-        end
     end
 
     def create
@@ -24,9 +22,6 @@ class SpasController < ApplicationController
     end
 
     def edit
-        3.times do
-            @spa.technicians.build
-        end
     end
 
     def update
@@ -56,8 +51,7 @@ class SpasController < ApplicationController
             :city, 
             :state, 
             :zip, 
-            :phone_number,
-            technicians_attributes: [:name]
+            :phone_number
         )
     end
 end

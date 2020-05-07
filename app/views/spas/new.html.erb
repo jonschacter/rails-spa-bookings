@@ -21,11 +21,5 @@
     <%= f.label :phone_number %>
     <%= f.text_field :phone_number %>
     <br>
-    <%= f.label :technicians, "Create Technicians: (optional)" %><br>
-    <%= f.fields_for :technicians do |technician_fields| %>
-        <%= technician_fields.label :name %>
-        <%= technician_fields.text_field :name %><br>
-    <% end %>
-    <br>
     <%= f.submit %>
 <% end %>
