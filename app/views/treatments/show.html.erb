@@ -5,4 +5,7 @@
 <h3>Duration:</h3>
 <p><%= @treatment.duration %> minutes</p>
 <br>
+<%= link_to "Edit This Treatment", edit_spa_treatment_path(@treatment.spa, @treatment) %><br>
+<%= link_to "Delete This Treatment", spa_treatment_path(@treatment.spa, @treatment), :method => :delete %><br>
+<br>
 <%= link_to "Back to #{@treatment.spa.name}", spa_path(@treatment.spa) %>

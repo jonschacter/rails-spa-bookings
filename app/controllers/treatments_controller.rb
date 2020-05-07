@@ -1,6 +1,6 @@
 class TreatmentsController < ApplicationController
     before_action :set_treatment, only: [:show, :edit, :update, :destroy]
-    before_action :set_spa_from_nest, only: [:new, :destroy]
+    before_action :set_spa_from_nest, only: [:new, :edit, :destroy]
 
     def show
     end
@@ -22,7 +22,7 @@ class TreatmentsController < ApplicationController
     end
 
     def update
-        if @treamtent.update(treatment_params)
+        if @treatment.update(treatment_params)
             redirect_to spa_treatment_path(@treatment.spa, @treatment)
         else
             render:edit

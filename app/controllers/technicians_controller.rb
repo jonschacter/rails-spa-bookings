@@ -1,6 +1,6 @@
 class TechniciansController < ApplicationController
     before_action :set_technician, only: [:show, :edit, :update, :destroy]
-    before_action :set_spa_from_nest, only: [:new, :destroy]
+    before_action :set_spa_from_nest, only: [:new, :edit, :destroy]
     
     def show
     end
