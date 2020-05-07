@@ -1,11 +1,12 @@
 class TechniciansController < ApplicationController
     before_action :set_technician, only: [:show, :edit, :update, :destroy]
+    before_action :set_spa_from_nest, only: [:new, :destroy]
     
     def show
     end
 
     def new
-        @technician = Technician.new
+        @technician = @spa.technicians.build
     end
 
     def create
@@ -29,7 +30,6 @@ class TechniciansController < ApplicationController
     end
 
     def destroy
-        @spa = Spa.find_by(id: params[:spa_id])
         @technician.destroy
         redirect_to spa_path(@spa)
     end

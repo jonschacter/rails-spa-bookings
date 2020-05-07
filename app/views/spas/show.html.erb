@@ -26,6 +26,7 @@
         </li>
     <% end %>
 </ul>
+<%= link_to "Add a Treatment", new_spa_treatment_path(@spa) %><br>
 <br>
 <%= link_to "Edit This Spa", edit_spa_path(@spa) %><br>
 <%= link_to "Delete This Spa", spa_path(@spa), :method => "delete" %><br>

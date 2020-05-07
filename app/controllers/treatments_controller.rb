@@ -1,11 +1,12 @@
 class TreatmentsController < ApplicationController
     before_action :set_treatment, only: [:show, :edit, :update, :destroy]
+    before_action :set_spa_from_nest, only: [:new, :destroy]
 
     def show
     end
 
     def new
-        @treatment = Treatment.new
+        @treatment = @spa.treatments.build
     end
 
     def create

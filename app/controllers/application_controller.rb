@@ -5,4 +5,8 @@ class ApplicationController < ActionController::Base
     def after_sign_in_path_for(resource)
         request.env['omniauth.origin'] || root_path
     end
+
+    def set_spa_from_nest
+        @spa = Spa.find_by(id: params[:spa_id])
+    end
 end
