@@ -1,6 +1,6 @@
 class TechniciansController < ApplicationController
-    before_action :set_technician, only: [:show, :update]
-    before_action :set_spa, only: [:new, :edit, :update]
+    before_action :set_technician, only: [:show, :update, :destroy]
+    before_action :set_spa, only: [:new, :edit, :update, :destroy]
     
     def show
     end
@@ -28,6 +28,11 @@ class TechniciansController < ApplicationController
         else
             render :edit
         end
+    end
+
+    def destroy
+        @technician.destroy
+        redirect_to spa_path(@spa)
     end
 
     private
