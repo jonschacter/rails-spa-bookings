@@ -1,3 +1,4 @@
 <h1>Welcome<%= current_user ? " #{current_user.name}" : nil %>!</h1>
 
-<%= link_to "View All Spas", spas_path %>
+<%= link_to "View All Spas", spas_path %><br>
+<%= link_to "View My Appointments", user_appointments_path(current_user) %>

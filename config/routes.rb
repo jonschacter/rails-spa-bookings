@@ -7,4 +7,10 @@ Rails.application.routes.draw do
     resources :technicians
     resources :treatments
   end
+
+  resources :users, only: [] do
+    resources :appointments, only: [:index]
+  end
+
+  resources :appointments, only: []
 end
