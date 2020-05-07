@@ -24,6 +24,9 @@ class SpasController < ApplicationController
     end
 
     def edit
+        3.times do
+            @spa.technicians.build
+        end
     end
 
     def update

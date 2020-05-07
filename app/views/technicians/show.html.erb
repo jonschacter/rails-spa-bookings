@@ -1,2 +1,4 @@
 <h1><%= @technician.name %></h1>
-<p>Works for: <%= link_to @technician.spa.name, spa_path(@technician.spa) %> - <%= @technician.spa.phone_number %></p>
+<p>Works for: <%= @technician.spa.name %> - <%= @technician.spa.phone_number %></p>
+<%= link_to "Edit This Technician", edit_spa_technician_path(@technician.spa, @technician) %><br>
+<%= link_to "Back to #{@technician.spa.name}", spa_path(@technician.spa) %>
