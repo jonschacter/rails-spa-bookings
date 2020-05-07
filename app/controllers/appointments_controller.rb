@@ -21,11 +21,9 @@ class AppointmentsController < ApplicationController
 
     def new
         @appointment = current_user.appointments.build
-        if params[:treatment_id]
-            @treatments = Treatment.find_by(id: params[:treatment_id])
-        elsif params[:spa_id]
+        if params[:spa_id]
             @spa = Spa.find_by(id: params[:spa_id])
-            @treatments = @spa.treatments if @spa
+            @treatments = @spa.treatments
         end
     end
 

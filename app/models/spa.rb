@@ -4,39 +4,48 @@ class Spa < ApplicationRecord
     has_many :appointments, :through => :treatments
 
     def available_timeslots
+        available_times = []
+        half_hours_array = datetime_array_for_each_working_half_hour
+        half_hours_array.each_with_index do |half_hours, index|
+            if self.appointments.find_by(appointment_time: half_hours)
+                puts "#{half_hours} is taken"
+            elsif appointment = self.appointments.find_by(appointment_time: half_hours_array[index-1])
+                if appointment.treatment.duration == 60
+                else
+                    available_times << data_for_datetime_array(half_hours)
+                end
+            else
+                available_times << data_for_datetime_array(half_hours)
+            end
+        end
+        available_times
+    end
+
+    private
+
+    def datetime_array_for_next_seven_days_at_midnight
         days_array = []
         day_counter = 1
         7.times do
-            days_array << (Time.now + day_counter.days)
+            days_array << (Time.now + day_counter.days).at_midnight
             day_counter += 1
         end
-        days_array = days_array.collect{ |day| day.at_midnight }
+        days_array
+    end
 
+    def datetime_array_for_each_working_half_hour
         half_hours_array = []
-        days_array.each do |day|
+        datetime_array_for_next_seven_days_at_midnight.each do |day|
             half_hour_counter = 9.to_f
             17.times do
                 half_hours_array << (day + half_hour_counter.hours)
                 half_hour_counter += 0.5
             end
         end
-        
-        available_times = []
+        half_hours_array
+    end
 
-        half_hours_array.each_with_index do |half_hours, i|
-                
-            
-            if appointments.find_by(appointment_time: half_hours)
-            elsif appointment = appointments.find_by(appointment_time: half_hours_array[i-1])
-                if appointment.treatment.duration == 60
-                else
-                    available_times << [half_hours.strftime("%A, %B %e, %Y - %l:%M %P"), half_hours]
-                end
-            else
-                available_times << [half_hours.strftime("%A, %B %e, %Y - %l:%M %P"), half_hours]
-            end
-        end
-
-        available_times
+    def data_for_datetime_array(half_hours)
+        [half_hours.strftime("%A, %B %e, %Y - %l:%M %P"), half_hours]
     end
 end

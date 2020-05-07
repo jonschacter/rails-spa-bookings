@@ -5,9 +5,7 @@ Rails.application.routes.draw do
 
   resources :spas do
     resources :technicians
-    resources :treatments do
-        resources :appointments, only: [:new]
-    end
+    resources :treatments
     resources :appointments, only: [:new, :edit]
   end
 
