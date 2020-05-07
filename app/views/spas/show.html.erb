@@ -20,7 +20,7 @@
 <ul>
     <% @spa.treatments.each do |treatment| %>
         <li>
-            <h3><%= treatment.name %></h3>
+            <h3><%= link_to treatment.name, spa_treatment_path(@spa, treatment) %></h3>
             <p><%= treatment.description %></p>
             <p>$<%= treatment.price %> - <%= treatment.duration %> min</p>
         </li>

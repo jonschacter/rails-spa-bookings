@@ -1,0 +1,8 @@
+<h1><%= @treatment.name %></h1>
+<p><%= @treatment.description %></p>
+<h3>Price:</h3>
+<p>$<%= @treatment.price %></p>
+<h3>Duration:</h3>
+<p><%= @treatment.duration %> minutes</p>
+<br>
+<%= link_to "Back to #{@treatment.spa.name}", spa_path(@treatment.spa) %>
