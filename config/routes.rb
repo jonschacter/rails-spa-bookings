@@ -5,12 +5,15 @@ Rails.application.routes.draw do
 
   resources :spas do
     resources :technicians
-    resources :treatments
+    resources :treatments do
+        resources :appointments, only: [:new]
+    end
+    resources :appointments, only: [:new, :edit]
   end
 
   resources :users, only: [] do
-    resources :appointments, only: [:index]
+    resources :appointments, only: [:index, :show, :destroy]
   end
 
-  resources :appointments, only: []
+  resources :appointments, only: [:create, :update]
 end

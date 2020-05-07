@@ -1,0 +1,14 @@
+<h1>Edit Appointment<%= current_user ? " for #{current_user.name}" : nil %></h1>
+<%= form_for @appointment do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.label :treatment %>
+    <%= f.collection_select(:treatment_id, @treatments, :id, :list_spa_treatment_name) %>
+    <br>
+    <%= f.label :technician %>
+    <%= f.collection_select(:technician_id, @spa.technicians, :id, :name) %>
+    <br>
+    <%= f.label :appointment_time %>
+    <%= f.select(:appointment_time, @spa.available_timeslots) %>
+    <br>
+    <%= f.submit %>
+<% end %>

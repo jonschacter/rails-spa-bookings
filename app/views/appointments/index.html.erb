@@ -1,7 +1,7 @@
 <h1><%= current_user ? " #{current_user.name}'s " : nil %>Appointments</h1>
 <% @appointments.each do |appointment| %>
     <h2>Time:</h2>
-    <p><%= appointment.readable_time %></p>
+    <p><%= link_to appointment.readable_time, user_appointment_path(current_user, appointment) %></p>
     <h3>Spa:</h3>
     <p><%= link_to appointment.spa.name, spa_path(appointment.spa) %></p>
     <h3>Treatment:</h3>
@@ -10,3 +10,4 @@
     <p><%= link_to appointment.technician.name, spa_technician_path(appointment.spa, appointment.technician) %></p>
     <hr>
 <% end %>
+<br>
