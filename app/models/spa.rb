@@ -2,13 +2,13 @@ class Spa < ApplicationRecord
     has_many :technicians, :dependent => :delete_all
     has_many :treatments
     has_many :appointments, :through => :treatments
+    validates :name, :presence => true
 
     def available_timeslots
         available_times = []
         half_hours_array = datetime_array_for_each_working_half_hour
         half_hours_array.each_with_index do |half_hours, index|
             if self.appointments.find_by(appointment_time: half_hours)
-                puts "#{half_hours} is taken"
             elsif appointment = self.appointments.find_by(appointment_time: half_hours_array[index-1])
                 if appointment.treatment.duration == 60
                 else

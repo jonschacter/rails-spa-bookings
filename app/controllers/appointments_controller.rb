@@ -1,7 +1,9 @@
 class AppointmentsController < ApplicationController
+    before_action :set_appointment, only: [:edit, :update, :destroy]
 
     def index
-        if params[:user_id] && params[:user_id].to_i == current_user.id
+        if params[:user_id]
+            params_user_id_match?
             @appointments = current_user.appointments
         else
             redirect_to root_path
@@ -9,7 +11,8 @@ class AppointmentsController < ApplicationController
     end
 
     def show
-        if params[:user_id] && params[:user_id].to_i == current_user.id
+        if params[:user_id]
+            params_user_id_match?
             @appointment = current_user.appointments.find_by(id: params[:id])
             if @appointment.nil?
                 redirect_to user_appointments_path(current_user)
@@ -22,8 +25,8 @@ class AppointmentsController < ApplicationController
     def new
         @appointment = current_user.appointments.build
         if params[:spa_id]
-            @spa = Spa.find_by(id: params[:spa_id])
-            @treatments = @spa.treatments
+            set_spa_from_nest
+            @treatments = @spa.treatments if @spa
         end
     end
 
@@ -37,17 +40,15 @@ class AppointmentsController < ApplicationController
     end
 
     def edit
-        set_appointment
         if @appointment.user_id != current_user.id
             redirect_to user_appointment_path(current_user)
         else
-            @spa = Spa.find_by(id: params[:spa_id])
+            set_spa_from_nest
             @treatments = @spa.treatments if @spa
         end
     end
 
     def update
-        set_appointment
         if @appointment.update(appointment_params)
             redirect_to user_appointment_path(current_user, @appointment)
         else
@@ -56,7 +57,6 @@ class AppointmentsController < ApplicationController
     end
 
     def destroy
-        set_appointment
         @appointment.destroy
         redirect_to user_appointments_path(current_user)
     end

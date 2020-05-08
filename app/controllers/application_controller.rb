@@ -9,4 +9,12 @@ class ApplicationController < ActionController::Base
     def set_spa_from_nest
         @spa = Spa.find_by(id: params[:spa_id])
     end
+
+    def params_user_id_match?
+        if params[:user_id].to_i == current_user.id
+            true
+        else
+            redirect_to root_path
+        end
+    end
 end
