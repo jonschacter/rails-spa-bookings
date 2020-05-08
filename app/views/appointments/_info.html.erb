@@ -1,0 +1,8 @@
+<h2>Time:</h2>
+<p><%= link_to appointment.readable_time, user_appointment_path(current_user, appointment) %></p>
+<h3>Spa:</h3>
+<p><%= link_to appointment.spa.name, spa_path(appointment.spa) %></p>
+<h3>Treatment:</h3>
+<p><%= link_to appointment.treatment.name, spa_treatment_path(appointment.spa, appointment.treatment) %></p>
+<h3>Technician:</h3>
+<p><%= link_to appointment.technician.name, spa_technician_path(appointment.spa, appointment.technician) %></p>

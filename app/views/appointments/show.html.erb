@@ -1,12 +1,5 @@
-<h1><%= current_user ? " #{current_user.name}'s " : nil %>Appointment</h1>
-<h2>Time:</h2>
-<p><%= @appointment.readable_time %></p>
-<h3>Spa:</h3>
-<p><%= link_to @appointment.spa.name, spa_path(@appointment.spa) %></p>
-<h3>Treatment:</h3>
-<p><%= link_to @appointment.treatment.name, spa_treatment_path(@appointment.spa, @appointment.treatment) %></p>
-<h3>Technician:</h3>
-<p><%= link_to @appointment.technician.name, spa_technician_path(@appointment.spa, @appointment.technician) %></p>
+<h1><%= current_user.name %>'s Appointment</h1>
+<%= render partial: "info", locals: {appointment: @appointment} %>
 <br>
 <%= link_to "Edit Appointment", edit_spa_appointment_path(@appointment.spa, @appointment) %><br>
 <%= link_to "Delete Appointment", user_appointment_path(current_user, @appointment), :method => :delete %><br>
