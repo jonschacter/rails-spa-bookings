@@ -3,6 +3,7 @@ class Spa < ApplicationRecord
     has_many :treatments
     has_many :appointments, :through => :treatments
     validates :name, :presence => true
+    scope :by_zipcode, -> (zipcode) { where("zip = ?", zipcode)}
 
     def available_timeslots
         available_times = []
