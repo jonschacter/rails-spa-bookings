@@ -1,6 +1,11 @@
 class SpasController < ApplicationController
     before_action :set_spa, only: [:show, :edit, :update, :destroy]
 
+    def zipsearch
+        @spas = Spa.by_zipcode(params[:zipcode])
+        render :index
+    end
+
     def index
         @spas = Spa.order(:name)
     end

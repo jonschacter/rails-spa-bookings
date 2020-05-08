@@ -1,13 +1,7 @@
 <h1><%= @spa.name %></h1>
 
 <h2>Address</h2>
-<p><%= @spa.address1 %></p>
-    <% if @spa.address2 %>
-        <p><%= @spa.address2 %></p>
-    <% end %>
-<p><%= @spa.city %>, <%= @spa.state %> <%= @spa.zip %></p>
-<h2>Phone</h2>
-<p><%= @spa.phone_number %></p>
+<%= render partial: "spa_address", locals: { spa: @spa } %>
 
 <h2>Technicians</h2>
 <ul>
@@ -21,8 +15,7 @@
     <% @spa.treatments.each do |treatment| %>
         <li>
             <h3><%= link_to treatment.name, spa_treatment_path(@spa, treatment) %></h3>
-            <p><%= treatment.description %></p>
-            <p>$<%= treatment.price %> - <%= treatment.duration %> min</p>
+            <%= render partial: "treatments/treatment_info", locals: { treatment: treatment } %>
         </li>
     <% end %>
 </ul>

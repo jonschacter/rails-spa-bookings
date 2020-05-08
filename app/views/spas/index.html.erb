@@ -1,15 +1,15 @@
 <h1>Spa Index</h1>
+<p>Search by Zipcode:</p>
+<%= form_tag(zipcode_search_path) do %>
+    <%= text_field_tag :zipcode %>
+    <%= submit_tag "Enter Zipcode" %>
+<% end %>
+<br>
 <% @spas.each do |spa| %>
-    <div>
+    <div class="spa_listing">
         <h3><%= link_to spa.name, spa_path(spa) %></h3>
-        <p><%= spa.address1 %></p>
-        <% if spa.address2 %>
-            <p><%= spa.address2 %></p>
-        <% end %>
-        <p><%= spa.city %>, <%= spa.state %> <%= spa.zip %></p>
-        <p><%= spa.phone_number %></p>
+        <%= render partial: "spa_address", locals: {spa: spa} %>
     </div>
 <% end %>
 <br>
-<%= link_to "Back", root_path %>
 <p>Spa Owner? - <%= link_to "Create Spa", new_spa_path %></p>
