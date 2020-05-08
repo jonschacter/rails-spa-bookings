@@ -1,17 +1,2 @@
 <h1>New Treatment for <%= @spa.name %></h1>
-<%= form_for [@spa, @treatment] do |f| %>
-    <%= f.hidden_field :spa_id %>
-    <%= f.label :name %>
-    <%= f.text_field :name %><br>
-
-    <%= f.label :description %>
-    <%= f.text_area :description %><br>
-
-    <%= f.label :price, "Price $" %>
-    <%= f.text_field :price %><br>
-
-    <%= f.label :duration %>
-    <%= f.number_field :duration %><br>
-
-    <%= f.submit %>
-<% end %>
+<%= render "form" %>
