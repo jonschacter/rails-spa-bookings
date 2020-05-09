@@ -7,7 +7,7 @@
     <%= f.collection_select(:technician_id, @spa.technicians, :id, :name) %>
     <br>
     <%= f.label :appointment_time %>
-    <%= f.select(:appointment_time, @spa.available_timeslots) %>
+    <%= f.select(:appointment_time, options_for_select(@spa.available_timeslots)) %>
     <br>
     <%= f.submit %>
 <% end %>

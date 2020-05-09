@@ -2,7 +2,10 @@ class Spa < ApplicationRecord
     has_many :technicians, :dependent => :delete_all
     has_many :treatments
     has_many :appointments, :through => :treatments
+    
     validates :name, :presence => true
+    validates :phone_number, :presence => true
+
     scope :by_zipcode, -> (zipcode) { where("zip = ?", zipcode)}
 
     def available_timeslots

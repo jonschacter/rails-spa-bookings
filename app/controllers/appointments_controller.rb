@@ -57,7 +57,10 @@ class AppointmentsController < ApplicationController
     end
 
     def destroy
-        @appointment.destroy
+        if params[:user_id]
+            params_user_id_match?
+            @appointment.destroy
+        end
         redirect_to user_appointments_path(current_user)
     end
 
