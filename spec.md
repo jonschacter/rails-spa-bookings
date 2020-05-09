@@ -14,7 +14,8 @@ Specs:
     # Appointment has form to choose foreign objects as well as set Appointment Time
 - [x] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
     # Spa, Technician, Treatment, User (through Devise)
-- [ ] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
+- [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
+    # Spa index has search by Zipcode function that uses a POST zipcode_search path
 - [x] Include signup (how e.g. Devise)
     Devise
 - [x] Include login (how e.g. Devise)
@@ -27,10 +28,11 @@ Specs:
     spa-technician, spa-treatment, user-appointment nested show pages, user-appointment nested index pages
 - [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients/new)
     spa-technician, spa-treatment, spa-appointment nested new routes
-- [ ] Include form display of validation errors (form URL e.g. /recipes/new)
+- [x] Include form display of validation errors (form URL e.g. /recipes/new)
+    # used a partial in views/helpers to display error messages, as well as CSS styling for field_with_errors to highlight incorrect fields
 
 Confirm:
-- [ ] The application is pretty DRY
-- [ ] Limited logic in controllers
-- [ ] Views use helper methods if appropriate
-- [ ] Views use partials if appropriate
+- [x] The application is pretty DRY
+- [x] Limited logic in controllers
+- [x] Views use helper methods if appropriate
+- [x] Views use partials if appropriate

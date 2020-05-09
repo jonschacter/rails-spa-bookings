@@ -14,6 +14,7 @@ class TreatmentsController < ApplicationController
         if @treatment.valid?
             redirect_to spa_treatment_path(@treatment.spa, @treatment)
         else
+            set_spa_from_nest
             render :new
         end
     end
@@ -25,6 +26,7 @@ class TreatmentsController < ApplicationController
         if @treatment.update(treatment_params)
             redirect_to spa_treatment_path(@treatment.spa, @treatment)
         else
+            set_spa_from_nest
             render:edit
         end
     end

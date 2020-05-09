@@ -14,6 +14,7 @@ class TechniciansController < ApplicationController
         if @technician.valid?
             redirect_to spa_technician_path(@technician.spa, @technician)
         else
+            set_spa_from_nest
             render :new
         end
     end
@@ -25,6 +26,7 @@ class TechniciansController < ApplicationController
         if @technician.update(technician_params)
             redirect_to spa_technician_path(@technician.spa, @technician)
         else
+            set_spa_from_nest
             render :edit
         end
     end

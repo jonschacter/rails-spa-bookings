@@ -1,2 +1,3 @@
 <h1>New Treatment for <%= @spa.name %></h1>
+<%= render partial: "helpers/errors", locals: { object: @treatment } %>
 <%= render "form" %>

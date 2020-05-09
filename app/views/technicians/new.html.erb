@@ -1,2 +1,3 @@
 <h1>Add a Technician to <%= @spa.name %></h1>
+<%= render partial: "helpers/errors", locals: { object: @technician } %>
 <%= render "form" %>
